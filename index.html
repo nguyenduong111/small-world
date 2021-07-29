@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+
+        <link rel="stylesheet" href="./style.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+
+        <script src="./sw.js"></script>
+
+        <div class="container">
+            <div class="row">
+                <h2 style="margin: 10px">Mô phỏng small-world</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 col-lg-4 col-md-4 col-sm-4">
+                    <form style="border: 1px solid #aeaeae; border-radius: 3px; margin: 10px;">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"
+                                >Số node(N)</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="Nut"
+                                aria-describedby="emailHelp"
+                                placeholder="số nguyên, lớn hơn hoặc bằng 4 node"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"
+                                >Số liên kết cơ bản(m)</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="lienKet"
+                                aria-describedby="emailHelp"
+                                placeholder="số nguyên, lớn hơn hoặc bằng 1 lk"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"
+                                >Xác suất "tua lại"(p)</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="xacSuat"
+                                aria-describedby="emailHelp"
+                                placeholder="0.0 --> 1.0 "
+                            />
+                        </div>
+
+                        <button type="button" class="btn btn-primary" style="margin: 10px;" onclick="onSubmit()">
+                            Submit
+                        </button>
+                    </form>
+                </div>
+                <div class="col-xs-8 col-lg-8 col-md-8 col-sm-8">
+                    <canvas
+                        id="myCanvas"
+                        width="200"
+                        height="100"
+                        style="border: 1px solid #d3d3d3"
+                    >
+                        Your browser does not support the HTML canvas
+                        tag.</canvas
+                    >
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
