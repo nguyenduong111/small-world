@@ -1,10 +1,11 @@
-// --------------------------------------------------------------------------
+// -----------------------xây dựng---------------------------------------------------
 // var N = 0; // tối thiểu 4 node
 // var m = 0; // số đg liên kết (chiều đồng hồ)
 // var p = 0; // xác suất "tua lại"
 // var M = 0; // số node dị biệt
 // var arr = [];
 
+// random màu
 function getRandomColor() {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -14,6 +15,7 @@ function getRandomColor() {
     return color;
 }
 
+// khởi tạo cấu trúc mảng
 let khoiTao = (arr, N) => {
     for (let i = 0; i < N; i++) {
         arr.push({
@@ -29,6 +31,7 @@ let khoiTao = (arr, N) => {
     return [...arr];
 };
 
+// tạo liên kết regularModel theo chiều kim đồng hồ, nút hiện tại liên kết tới m nút kế tiếp
 const regularModel = (arr, m, N) => {
     arr.forEach((element, index) => {
         for (let i = 1; i <= m; i++) {
@@ -49,15 +52,18 @@ const regularModel = (arr, m, N) => {
 };
 
 // lựa chọn ngẫu nhiên M liên kết trong (N * m) liên kết
-const Random = (M, m , N) => {
+const Random = (M, m, N) => {
     let arr = [];
     for (let i = 0; i < M; i++) {
-        let nodeStart = Math.floor(Math.random() * N);
-        let connect = Math.floor(Math.random() * m);
-        let nodeEnd = Math.floor(Math.random() * N);
+        let nodeStart = Math.floor(Math.random() * N); // chọn ngẫu nhiên nút dị biệt
+        let connect = Math.floor(Math.random() * m); // chọn liên kết trong nút dị biệt
+        let nodeEnd = Math.floor(Math.random() * N); // chọn ngẫu nhiên nút liên kết
+
         while (nodeStart === nodeEnd) {
+            // tránh trường hợp tự liên kết đến chính mình
             nodeEnd = Math.floor(Math.random() * N);
         }
+
         arr.push({
             nodeStart: nodeStart,
             connect: connect,
@@ -67,6 +73,7 @@ const Random = (M, m , N) => {
     return [...arr];
 };
 
+// tạo small-world
 const smallWord = (arr, match) => {
     match.forEach((elem) => {
         let { nodeStart, connect, nodeEnd } = elem;
@@ -82,7 +89,9 @@ const smallWord = (arr, match) => {
 
 // console.log(arrSW);
 
-// ----------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------
+
+//--------------hiển thị----------------------------------------------------------------
 
 const widthOfCanvas = 500;
 const heightOfCanvas = 500;
@@ -91,17 +100,6 @@ const radius = (widthOfCanvas - 2 * radiusOfNode) / 2;
 const xO = widthOfCanvas / 2;
 const yO = heightOfCanvas / 2;
 
-function findDoChia(x) {
-    let i = 1;
-    while (x > i * 4) {
-        ++i;
-    }
-    return i;
-}
-
-// console.log("-----------------", findDoChia(N));
-
-// I và IV, II và III
 function findNode(xO, yO, alpha, radius) {
     if (alpha > 0 && alpha <= Math.PI / 2) {
         return {
@@ -205,14 +203,8 @@ function onSubmit() {
 
     var c = document.getElementById("myCanvas");
 
-    // const widthOfCanvas = 500;
-    // const heightOfCanvas = 500;
-
     c.width = widthOfCanvas;
     c.height = heightOfCanvas;
-
-    // c.width = window.innerWidth;
-    // c.height = window.innerHeight;
 
     var ctx = c.getContext("2d");
 
@@ -239,8 +231,4 @@ function onSubmit() {
             ctx.closePath();
         });
     }
-
-    // document.getElementById("Nut").value = "";
-    // document.getElementById("lienKet").value = "";
-    // document.getElementById("xacSuat").value = "";
 }
